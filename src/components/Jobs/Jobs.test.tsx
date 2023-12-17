@@ -9,4 +9,14 @@ describe('<Jobs />', () => {
 
         expect(list).toBeInTheDocument();
     });
+
+    it('should render list items', () => {
+        const { getAllByRole } = render(<Jobs />);
+
+        const listItems = getAllByRole('listitem');
+
+        listItems.forEach(item => {
+            expect(item).toBeInTheDocument();
+        });
+    });
 });
