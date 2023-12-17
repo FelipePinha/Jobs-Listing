@@ -9,6 +9,7 @@ export default {
             darkCyan: '#7b8e8e',
             veryDarkCyan: '#2c3a3a',
             desaturatedDarkCyan: '#5ba4a4',
+            white: '#fff',
         },
         fontFamily: {
             sans: ['League Spartan', 'sans-serif'],
