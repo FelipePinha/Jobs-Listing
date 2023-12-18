@@ -1,11 +1,15 @@
+import { Header } from './components/Header';
 import { Jobs } from './components/Jobs';
 import './index.css';
 
 function App() {
     return (
-        <main>
-            <Jobs />
-        </main>
+        <>
+            <Header />
+            <main>
+                <Jobs />
+            </main>
+        </>
     );
 }
 
