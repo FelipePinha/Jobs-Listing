@@ -4,12 +4,14 @@ interface FilterContextInterface {
     filter: string[];
     addToFilter: (item: string) => void;
     clearFilter: () => void;
+    removeItemFromFilter: (item: string) => void;
 }
 
 const initialState = {
     filter: [],
     addToFilter: () => {},
     clearFilter: () => {},
+    removeItemFromFilter: () => {},
 };
 
 export const FilterContext = createContext<FilterContextInterface>(initialState);
@@ -31,12 +33,17 @@ export const FilterProvider = ({ children }: { children: ReactNode }) => {
         });
     };
 
+    const removeItemFromFilter = (item: string) => {
+        const newFilter = filter.filter(lang => lang !== item);
+        setFilter(newFilter);
+    };
+
     const clearFilter = () => {
         setFilter([]);
     };
 
     return (
-        <FilterContext.Provider value={{ filter, addToFilter, clearFilter }}>
+        <FilterContext.Provider value={{ filter, addToFilter, clearFilter, removeItemFromFilter }}>
             {children}
         </FilterContext.Provider>
     );
