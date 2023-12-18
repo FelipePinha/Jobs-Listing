@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { FilterContext } from '../../contexts/FilterContext';
 
 export const Header = () => {
-    const { filter } = useContext(FilterContext);
+    const { filter, clearFilter } = useContext(FilterContext);
 
     return (
         <header
@@ -25,7 +25,10 @@ export const Header = () => {
                         </li>
                     ))}
                 </ul>
-                <button className="text-desaturatedDarkCyan font-bold hover:underline ">
+                <button
+                    onClick={clearFilter}
+                    className="text-desaturatedDarkCyan font-bold hover:underline "
+                >
                     Clear
                 </button>
             </section>

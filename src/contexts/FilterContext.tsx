@@ -2,12 +2,14 @@ import { createContext, ReactNode, useState } from 'react';
 
 interface FilterContextInterface {
     filter: string[];
-    handleAddToFilter: (item: string) => void;
+    addToFilter: (item: string) => void;
+    clearFilter: () => void;
 }
 
 const initialState = {
     filter: [],
-    handleAddToFilter: () => {},
+    addToFilter: () => {},
+    clearFilter: () => {},
 };
 
 export const FilterContext = createContext<FilterContextInterface>(initialState);
@@ -15,7 +17,7 @@ export const FilterContext = createContext<FilterContextInterface>(initialState)
 export const FilterProvider = ({ children }: { children: ReactNode }) => {
     const [filter, setFilter] = useState<string[]>([]);
 
-    const handleAddToFilter = (item: string) => {
+    const addToFilter = (item: string) => {
         const itemFound = filter.find(language => language === item);
 
         if (itemFound) {
@@ -29,8 +31,12 @@ export const FilterProvider = ({ children }: { children: ReactNode }) => {
         });
     };
 
+    const clearFilter = () => {
+        setFilter([]);
+    };
+
     return (
-        <FilterContext.Provider value={{ filter, handleAddToFilter }}>
+        <FilterContext.Provider value={{ filter, addToFilter, clearFilter }}>
             {children}
         </FilterContext.Provider>
     );
