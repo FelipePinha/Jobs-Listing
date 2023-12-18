@@ -3,11 +3,11 @@ import { useContext, MouseEvent } from 'react';
 import { FilterContext } from '../../contexts/FilterContext';
 
 export const JobCard = ({ item }: { item: JobType }) => {
-    const { handleAddToFilter } = useContext(FilterContext);
+    const { addToFilter } = useContext(FilterContext);
 
     const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
         const value = event.currentTarget;
-        handleAddToFilter(value.innerHTML);
+        addToFilter(value.innerHTML);
     };
 
     return (
