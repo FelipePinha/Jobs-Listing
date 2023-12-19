@@ -2,8 +2,11 @@ import { JobType } from '../../types/JobsTypes';
 import { useContext, MouseEvent } from 'react';
 import { FilterContext } from '../../contexts/FilterContext';
 
-export const JobCard = ({ item }: { item: JobType }) => {
-    const { addToFilter } = useContext(FilterContext);
+export const JobCard = ({ item, filterResults }: { item: JobType; filterResults: string[] }) => {
+    const { addToFilter, filter } = useContext(FilterContext);
+
+    const { languages, tools } = item;
+    const langs = [...languages, ...tools];
 
     const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
         const value = event.currentTarget;
@@ -11,7 +14,11 @@ export const JobCard = ({ item }: { item: JobType }) => {
     };
 
     return (
-        <article className="mt-5 bg-white shadow-md px-8 py-3 rounded-md">
+        <article
+            className={`mt-5 bg-white shadow-md px-8 py-3 rounded-md ${
+                filter.length === 0 ? 'block' : filterResults.length > 0 ? 'block' : 'hidden'
+            }`}
+        >
             <div className="flex justify-between items-center">
                 <div className="flex gap-5 items-center">
                     <div className="w-16 h-16">
@@ -46,23 +53,13 @@ export const JobCard = ({ item }: { item: JobType }) => {
                     </div>
                 </div>
                 <ul className="flex gap-3">
-                    {item.languages.map(lang => (
+                    {langs.map(lang => (
                         <li key={lang}>
                             <button
                                 onClick={handleClick}
                                 className="h-6 px-4 rounded-md flex items-center bg-bgGrayishCyan text-desaturatedDarkCyan font-bold text-sm hover:bg-veryDarkCyan hover:text-lightCyan cursor-pointer"
                             >
                                 {lang}
-                            </button>
-                        </li>
-                    ))}
-                    {item.tools.map(tool => (
-                        <li key={tool}>
-                            <button
-                                onClick={handleClick}
-                                className='className="h-6 px-4 rounded-md flex items-center bg-bgGrayishCyan text-desaturatedDarkCyan font-bold text-sm hover:bg-veryDarkCyan hover:text-lightCyan cursor-pointer"'
-                            >
-                                {tool}
                             </button>
                         </li>
                     ))}
