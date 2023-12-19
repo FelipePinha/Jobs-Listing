@@ -15,13 +15,13 @@ export const JobCard = ({ item, filterResults }: { item: JobType; filterResults:
 
     return (
         <article
-            className={`mt-5 bg-white shadow-md px-8 py-3 rounded-md ${
+            className={`relative mt-12 md:mt-5 bg-white shadow-md px-8 py-3 rounded-md ${
                 filter.length === 0 ? 'block' : filterResults.length > 0 ? 'block' : 'hidden'
             }`}
         >
-            <div className="flex justify-between items-center">
-                <div className="flex gap-5 items-center">
-                    <div className="w-16 h-16">
+            <div className="flex flex-col gap-5 md:gap-0 md:flex-row md:justify-between md:items-center">
+                <div className="flex gap-5 items-center py-8 border-b-2 border-darkCyan md:border-0">
+                    <div className="w-16 h-16 absolute -top-6 left-4 md:static">
                         <img className="max-w-full" src={item.logo} alt={item.company} />
                     </div>
                     <div className="flex flex-col">
