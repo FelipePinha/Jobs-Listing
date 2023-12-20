@@ -14,11 +14,7 @@ export default {
         fontFamily: {
             sans: ['League Spartan', 'sans-serif'],
         },
-        extend: {
-            backgroundImage: {
-                'desktop-bg': 'url("./src/images/bg-header-desktop.svg")',
-            },
-        },
+        extend: {},
     },
     plugins: [],
 };

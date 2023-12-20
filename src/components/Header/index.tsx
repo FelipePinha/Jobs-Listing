@@ -1,12 +1,13 @@
 import { useContext } from 'react';
 import { FilterContext } from '../../contexts/FilterContext';
+import HeaderBackground from '../../images/bg-header-desktop.svg';
 
 export const Header = () => {
     const { filter, clearFilter, removeItemFromFilter } = useContext(FilterContext);
 
     return (
         <header
-            className={`h-40 relative bg-desktop-bg bg-no-repeat bg-top bg-cover bg-desaturatedDarkCyan`}
+            className={`h-40 relative bg-desktop-bg bg-[url(${HeaderBackground})] bg-top bg-cover bg-desaturatedDarkCyan`}
         >
             <section
                 data-testid="filter-field"
