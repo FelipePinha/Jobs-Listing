@@ -15,6 +15,7 @@ export const JobCard = ({ item, filterResults }: { item: JobType; filterResults:
 
     return (
         <article
+            data-testid="job-card"
             className={`relative mt-12 md:mt-5 bg-white shadow-md px-8 py-3 rounded-md ${
                 filter.length === 0 ? 'block' : filterResults.length > 0 ? 'block' : 'hidden'
             }`}

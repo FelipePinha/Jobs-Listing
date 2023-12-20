@@ -1,5 +1,6 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { JobCard } from '.';
+import { FilterContext } from '../../contexts/FilterContext';
 
 describe('<JobCard />', () => {
     const mockItem = {
@@ -18,11 +19,43 @@ describe('<JobCard />', () => {
         tools: [],
     };
 
-    it('should show job position', () => {
-        const { getByText } = render(<JobCard item={mockItem} />);
+    it('should show job card when filter match', () => {
+        const contextValues = {
+            filter: ['HTML'],
+            addToFilter: () => {},
+            clearFilter: () => {},
+            removeItemFromFilter: () => {},
+        };
+        render(
+            <>
+                <FilterContext.Provider value={contextValues}>
+                    <JobCard item={mockItem} filterResults={['HTML']} />
+                </FilterContext.Provider>
+            </>
+        );
 
-        const jobRole = getByText('Senior Frontend Developer').textContent;
+        const jobCard = screen.getByTestId('job-card');
 
-        expect(jobRole).toEqual(mockItem.position);
+        expect(jobCard.classList).toContain('block');
+    });
+
+    it("should hidden job card when filter don't match", () => {
+        const contextValues = {
+            filter: ['Vue'],
+            addToFilter: () => {},
+            clearFilter: () => {},
+            removeItemFromFilter: () => {},
+        };
+        render(
+            <>
+                <FilterContext.Provider value={contextValues}>
+                    <JobCard item={mockItem} filterResults={[]} />
+                </FilterContext.Provider>
+            </>
+        );
+
+        const jobCard = screen.getByTestId('job-card');
+
+        expect(jobCard.classList).toContain('hidden');
     });
 });
