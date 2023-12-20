@@ -9,6 +9,7 @@ export const Header = () => {
             className={`h-40 relative bg-desktop-bg bg-no-repeat bg-top bg-cover bg-desaturatedDarkCyan`}
         >
             <section
+                data-testid="filter-field"
                 className={`absolute p-5 bottom-[-20%] left-0 right-0 mx-auto w-3/4 h-auto bg-white shadow-md rounded-md flex justify-between items-center ${
                     filter.length > 0 ? 'block' : 'hidden'
                 }`}
